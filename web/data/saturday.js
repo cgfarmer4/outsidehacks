@@ -1,6 +1,6 @@
 var saturday = [
 	{ 
-		"stage": "Lands End",
+		"stage": [312, 660],//"Lands End",
 		"artists": [
 			{
 				"name" : "The Soft White Sixties",
@@ -41,7 +41,7 @@ var saturday = [
 		]
 	},
 	{ 
-		"stage": "Sutro",
+		"stage": [498, 206],//"Sutro",
 		"artists": [
 			{
 				"name" : "Bhi Bhiman",
@@ -89,7 +89,7 @@ var saturday = [
 		]
 	},
 	{ 
-		"stage": "Twin Peaks",
+		"stage": [1775, 365],//"Twin Peaks",
 		"artists": [
 			{
 				"name" : "Social Studies",
@@ -130,7 +130,7 @@ var saturday = [
 		]
 	},
 	{ 
-		"stage": "Panhandle",
+		"stage": [1407, 435],//"Panhandle",
 		"artists": [
 			{
 				"name" : "LoCura",
@@ -171,7 +171,7 @@ var saturday = [
 		]
 	},
 	{ 
-		"stage": "The Dome by Heineken",
+		"stage": [676, 544],//"The Dome by Heineken",
 		"artists": [
 			{
 				"name" : "Dub Gabriel",
@@ -206,7 +206,7 @@ var saturday = [
 		]
 	},
 	{ 
-		"stage": "The Barbary",
+		"stage": [1051, 330],//"The Barbary",
 		"artists": [
 			{
 				"name" : "The Julie Klausner Cabaret Situation with guests Bridget Everett & The Tender Moments and musical director Jon Spurney",

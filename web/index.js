@@ -1,7 +1,6 @@
 
 var image = new Image();
 var canvas = null;
-var heatmap = null;
 
 var Pointer = {
 	mapS : 1, begS : 1, endS : 1, prvS : 1,
@@ -16,10 +15,8 @@ $(window).load(function()
 	image.src = 'map.jpg';
 
 	canvas = document.getElementById("canvas");
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
 
-	heatmap = document.getElementById("heatmap");
+	var heatmap = document.getElementById("heatmap");
 	heatmap.ontouchstart = function(e) {		
 		var touches = e.targetTouches;
 		if(touches.length == 2) {
@@ -46,13 +43,7 @@ $(window).load(function()
 			Pointer.mapY = (touches[0].pageY - Pointer.begY) * 1/Pointer.mapS + Pointer.prvY;
 		}
 		
-		var g = canvas.getContext('2d');
-		g.clearRect(0, 0, canvas.width, canvas.height);
-		g.save();
-		g.scale(Pointer.mapS, Pointer.mapS);
-		g.translate(Pointer.mapX, Pointer.mapY)
-		g.drawImage(image, 0,0);
-		g.restore();
+		draw();
 	};
 	heatmap.ontouchend = function(e) {	
 		Pointer.prvS = Pointer.mapS;
@@ -64,8 +55,11 @@ $(window).load(function()
 	$('#slider').change(function() {
 		var val = $(this).val() == 0 ? 12 : $(this).val();
 		$('#time').html(val + " P.M.");
+		draw();
 	});
+	$(window).resize(resize);
 
+	resize();
 /*
 	heatmap = heatmapFactory.create({"element": "heatmap"});
 	var centerX = canvas.width / 2;
@@ -74,3 +68,53 @@ $(window).load(function()
 	heatmap.store.setDataSet({ max: 10, data: [{x: centerX, y: centerY, count: radius}]});
 */
 });
+
+function resize()
+{
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+	draw();
+}
+
+function getVal()
+{
+	return $('#slider').val() * 60;
+}
+
+function draw()
+{
+	var g = canvas.getContext('2d');
+	g.clearRect(0, 0, canvas.width, canvas.height);
+	g.save();
+	g.scale(Pointer.mapS, Pointer.mapS);
+	g.translate(Pointer.mapX, Pointer.mapY);
+	g.drawImage(image, 0,0);
+
+	for(var i in friday) {
+		var stage = friday[i];
+		
+		var hottness = 0;
+		for(var j in stage.artists) {
+			var s = stage.artists[j].start_time;
+			var d = stage.artists[j].end_time;
+			var v = getVal();
+
+			if(v >= s && v <= d) {
+				hottness = stage.artists[j].hottness * 500;
+				break;
+			}
+		}
+
+		var x = stage.stage[0];
+		var y = stage.stage[1];
+		g.beginPath();
+		g.arc(x,y, hottness, 0,2*Math.PI);
+		var r = g.createRadialGradient(x,y, 1, x,y, hottness);
+		r.addColorStop(0, '#f00');
+		r.addColorStop(1, 'rgba(0,0,0,0)');
+		g.fillStyle = r;
+      	g.fill();
+	}
+
+	g.restore();
+}

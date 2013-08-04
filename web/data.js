@@ -103,8 +103,8 @@ function draw()
 	g.translate(Pointer.mapX, Pointer.mapY);
 	g.drawImage(image, 0,0);
 
-	for(var i in friday) {
-		var stage = friday[i];
+	for(var i in data) {
+		var stage = data[i];
 		
 		var hottness = 0;
 		for(var j in stage.artists) {

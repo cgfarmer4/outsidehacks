@@ -1,4 +1,4 @@
-var friday = [
+var data = [
 	{ 
 		"stage": [312, 660],//"Lands End",
 		"artists": [
@@ -228,7 +228,7 @@ var friday = [
 		]
 	},
 	{ 
-		"stage": [1051, 330],//"The Barbary",
+		"stage": [1065, 171],//"The Barbary",
 		"artists": [
 			{
 				"name": "Maria Bamford and Eugene Mirman  hosted by Kate Berlant",

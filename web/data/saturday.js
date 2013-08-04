@@ -1,4 +1,4 @@
-var saturday = [
+var data = [
 	{ 
 		"stage": [312, 660],//"Lands End",
 		"artists": [
@@ -206,7 +206,7 @@ var saturday = [
 		]
 	},
 	{ 
-		"stage": [1051, 330],//"The Barbary",
+		"stage": [1065, 171],//"The Barbary",
 		"artists": [
 			{
 				"name" : "The Julie Klausner Cabaret Situation with guests Bridget Everett & The Tender Moments and musical director Jon Spurney",

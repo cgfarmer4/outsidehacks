@@ -1,4 +1,4 @@
-var sunday = [
+var data = [
 	{ 
 		"stage": [312, 660],//"Lands End",
 		"artists": [
@@ -193,13 +193,13 @@ var sunday = [
 			{
 				"name" : "DJ Pierre",
 				"start_time" : 60*6, //"6:00",
-				"end_time": 60*7+30, //"90",
+				"end_time": 60*7+30, //"7:30",
 				"hottness": 0.436159			
 			}
 		]
 	},
 	{ 
-		"stage": [1051, 330],//"The Barbary",
+		"stage": [1065, 171],//"The Barbary",
 		"artists": [
 			{
 				"name" : "Bring The Rock w/Greg Behrendt & the Reigning Monarchs w/Matt Braunger, Dave Hill, Bruce McCulloch, Thao Nguyen and Nick Thune",

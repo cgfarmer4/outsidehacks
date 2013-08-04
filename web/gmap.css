@@ -1,0 +1,40 @@
+
+html, body {
+	position: absolute;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+	margin: 0; padding: 0;
+}
+
+div#map-wrapper {
+	position: absolute;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+}
+div#map {
+	width: 100%;
+	height: 100%;
+}
+
+div#footer {
+	position: absolute;
+	bottom: 0;
+	left: 0; right: 0;
+	text-align: center;
+	z-index: 2;
+}
+
+table#wrap {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: none;
+	text-align: center;
+}
+
+span#time {
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}

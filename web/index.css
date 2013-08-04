@@ -1,0 +1,41 @@
+
+html, body {
+	position: absolute;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+	margin: 0; padding: 0;
+}
+canvas {
+	position: absolute;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+	margin: 0; padding: 0;
+	border: none;
+}
+
+div#heatmap {
+	position: absolute;
+	top: 0; bottom: 0;
+	left: 0; right: 0;
+	z-index: 1;
+}
+
+div#footer {
+	position: absolute;
+	bottom: 0;
+	left: 0; right: 0;
+	text-align: center;
+	z-index: 2;
+}
+
+table#wrap {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+span#time {
+	font-size: 20px;
+	font-weight: bold;
+}
+

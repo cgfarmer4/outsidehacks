@@ -60,18 +60,17 @@ $(window).load(function()
 		Pointer.prvY = Pointer.mapY;
 	};
 
-	
-
-	heatmap = heatmapFactory.create({"element": "heatmap"});
-	var centerX = canvas.width / 2;
-	var centerY = canvas.height / 2;
-	var radius = 70;
-
-	heatmap.store.setDataSet({ max: 10, data: [{x: centerX, y: centerY, count: radius}]});
-
 	$('#slider').hide();
 	$('#slider').change(function() {
 		var val = $(this).val() == 0 ? 12 : $(this).val();
 		$('#time').html(val + " P.M.");
 	});
+
+/*
+	heatmap = heatmapFactory.create({"element": "heatmap"});
+	var centerX = canvas.width / 2;
+	var centerY = canvas.height / 2;
+	var radius = 70;
+	heatmap.store.setDataSet({ max: 10, data: [{x: centerX, y: centerY, count: radius}]});
+*/
 });

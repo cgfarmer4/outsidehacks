@@ -40,7 +40,7 @@ $(window).load(function()
 				Math.pow(touches[0].pageX - touches[1].pageX, 2) +
 				Math.pow(touches[0].pageY - touches[1].pageY, 2));
 
-			Pointer.mapS = Math.max(0.5, Math.min(2.0, (Pointer.endS / Pointer.begS) * Pointer.prvS));
+			Pointer.mapS = Math.max(0.1, Math.min(2.0, (Pointer.endS / Pointer.begS) * Pointer.prvS));
 		} else {
 			Pointer.mapX = (touches[0].pageX - Pointer.begX) * 1/Pointer.mapS + Pointer.prvX;
 			Pointer.mapY = (touches[0].pageY - Pointer.begY) * 1/Pointer.mapS + Pointer.prvY;

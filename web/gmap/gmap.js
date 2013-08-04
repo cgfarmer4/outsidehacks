@@ -43,7 +43,7 @@ $(window).load(function()
 	}], { name: "Background Style" });
     mapView.mapTypes.set("Background Style", mapType);
     mapView.setMapTypeId("Background Style");
-	mapView.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
+	//mapView.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
 
 	mapView.setMapTypeId(google.maps.MapTypeId.SATELLITE);
 
@@ -54,7 +54,10 @@ $(window).load(function()
     });
 
     $.getJSON("http://54.221.56.166/get_status.php"+"?callback=?", function(data) {
-	  alert(data);
+		for(var i in data) {
+			var coord = data[i];
+			heatmap.addDataPoint(coord.x, coord.y, 1);
+		}
 	});
 
 	retrieveLocation();
@@ -64,7 +67,9 @@ function positionCallback(position)
 {
 	mapView.setCenter(new google.maps.LatLng(position.coords.latitude,
 											 position.coords.longitude));
-	heatmap.addDataPoint(position.coords.latitude, position.coords.longitude, 1);
+	$.get("http://54.221.56.166/get_status.php?x=" + position.coords.latitude + "&y=" +
+		position.coords.longitude);
+
 }
 function retrieveLocation()
 {

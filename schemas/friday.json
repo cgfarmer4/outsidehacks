@@ -1,0 +1,168 @@
+"friday": [
+	{ 
+		"stage": "Lands End",
+		"artists": [
+			{
+				"name" : "Smith Westerns",
+				"time" : "12:50 - 1:40",				
+			}
+			{
+				"name" : "Surfer Blood",
+				"time" : "2:10 - 3:00",				
+			}
+			{
+				"name" : "Band of Horses",
+				"time" : "3:30 - 4:30",				
+			},
+			{
+				"name" : "The National",
+				"time" : "5:00 - 6:10",				
+			},
+			{
+				"name" : "Paul McCartney",
+				"time" : "7:10 - 9:55",				
+			}
+		]
+	},
+	{ 
+		"stage": "Sutro",
+		"artists": [
+			{
+				"name" : "Foy Vance",
+				"time" : "12:00 - 12:40",				
+			}
+			{
+				"name" : "Anuhea",
+				"time" : "1:05 - 1:45",				
+			}
+			{
+				"name" : "The Heavy",
+				"time" : "2:10 - 2:55",				
+			},
+			{
+				"name" : "Jessie Ware",
+				"time" : "3:25 - 4:15",				
+			},
+			{
+				"name" : "Rhye",
+				"time" : "4:45 - 5:35",				
+			},
+			{
+				"name" : "D'Angelo",
+				"time" : "6:05 - 7:05",				
+			}
+		]
+	},
+	{ 
+		"stage": "Twin Peaks",
+		"artists": [
+			{
+				"name" : "Midi Matilda",
+				"time" : "12:45 - 1:30",				
+			}
+			{
+				"name" : "Wild Belle",
+				"time" : "2:15 - 3:05",				
+			}
+			{
+				"name" : "Twenty One Pilots",
+				"time" : "3:50 - 4:40",				
+			},
+			{
+				"name" : "Zedd",
+				"time" : "5:25 - 6:15",				
+			},
+			{
+				"name" : "Yeasayer",
+				"time" : "7:00 - 7:50",				
+			},
+			{
+				"name" : "Pretty Lights",
+				"time" : "8:40 - 9:50",				
+			}
+		]
+	},
+	{ 
+		"stage": "Panhandle",
+		"artists": [
+			{
+				"name" : "Naia Kete",
+				"time" : "12:00 - 12:40",				
+			}
+			{
+				"name" : "Houndmouth",
+				"time" : "1:30 - 2:10",				
+			}
+			{
+				"name" : "The Men",
+				"time" : "3:05 - 3:45",				
+			},
+			{
+				"name" : "Daughter",
+				"time" : "4:40 - 5:20",				
+			},
+			{
+				"name" : "Wavves",
+				"time" : "6:15 - 6:55",				
+			},
+			{
+				"name" : "Chromatics",
+				"time" : "7:50 - 8:35",				
+			}
+		]
+	},
+	{ 
+		"stage": "The Dome by Heineken",
+		"artists": [
+			{
+				"name" : "Lexel",
+				"time" : "12:00 - 1:00",				
+			}
+			{
+				"name" : "All Good Funk Alliance",
+				"time" : "1:00 - 2:00",				
+			}
+			{
+				"name" : "Motion Potion",
+				"time" : "2:00 - 3:00",
+			},
+			{
+				"name" : "Motion Potion vs. All Good Funk Alliance",
+				"time" : "3:00 - 4:00",				
+			},
+			{
+				"name" : "The Plump DJs",
+				"time" : "4:00 - 5:30",				
+			},
+			{
+				"name" : "Stanton Warriors",
+				"time" : "5:30 - 7:00",				
+			}
+		]
+	},
+	{ 
+		"stage": "The Barbary",
+		"artists": [
+			{
+				"name" : "Maria Bamford and Eugene Mirman  hosted by Kate Berlant",
+				"time" : "12:30 - 1:40",				
+			}
+			{
+				"name" : "Jeffrey Ross Roasts San Francisco hosted by Moshe Kasher",
+				"time" : "2:00 - 3:15",				
+			}
+			{
+				"name" : "Maria Bamford and Eugene Mirman  hosted by Kate Berlant",
+				"time" : "3:45 - 4:55",				
+			},
+			{
+				"name" : "Jeffrey Ross Roasts San Francisco hosted by Moshe Kasher",
+				"time" : "5:15 - 6:30",				
+			},
+			{
+				"name" : "Night Train with Wyatt Cenac with guests Kate Berlant, Boots Riley, Ari Shaffir, and Nick Thune",
+				"time" : "6:45 - 8:00",				
+			}
+		]
+	}
+]

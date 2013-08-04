@@ -4,8 +4,9 @@ var canvas = null;
 var heatmap = null;
 
 var Pointer = {
-	mapS : 1, mapX : 0, mapY : 0,
-	prvS : 1, prvX : 0, prvY : 0,
+	mapS : 1, begS : 1, endS : 1, prvS : 1,
+	
+	mapX : 0, mapY : 0, prvX : 0, prvY : 0,
 	ptrX : 0, ptrY : 0,
 	begX : 0, begY : 0
 };
@@ -23,21 +24,27 @@ $(window).load(function()
 	heatmap = document.getElementById("heatmap");
 	heatmap.ontouchstart = function(e) {
 		drag = true;
-		Pointer.begX = e.targetTouches[0].pageX;
-		Pointer.begY = e.targetTouches[0].pageY;
-
-		Pointer.prvS = 
-		Pointer.ptrX = Pointer.begX * 1/Pointer.mapS - Pointer.mapX;
-		Pointer.ptrY = Pointer.begY * 1/Pointer.mapS - Pointer.mapY;
+		
+		var touches = e.targetTouches;
+		if(touches.length == 2) {
+			Pointer.begS = Math.sqrt(
+				Math.pow(touches[0].pageX - touches[1].pageX, 2) +
+				Math.pow(touches[0].pageY - touches[1].pageY, 2));
+		} else {
+			Pointer.begX = touches[0].pageX;
+			Pointer.begY = touches[0].pageY;
+		}
 	};
 	heatmap.ontouchmove = function(e) {
 		e.preventDefault();
 
 		var touches = e.targetTouches;
 		if(touches.length == 2) {
-			var x = Math.pow(touches[0].pageX - touches[1].pageX, 2);
-			var y = Math.pow(touches[0].pageY - touches[1].pageY, 2);
-			Pointer.mapS = Math.sqrt(x + y) / Pointer.prvS;
+			Pointer.endS = Math.sqrt(
+				Math.pow(touches[0].pageX - touches[1].pageX, 2) +
+				Math.pow(touches[0].pageY - touches[1].pageY, 2));
+
+			Pointer.mapS = Math.max(0.5, Math.min(2.0, (Pointer.endS / Pointer.begS) * Pointer.prvS));
 		} else {
 			Pointer.mapX = (touches[0].pageX - Pointer.begX) * 1/Pointer.mapS + Pointer.prvX;
 			Pointer.mapY = (touches[0].pageY - Pointer.begY) * 1/Pointer.mapS + Pointer.prvY;
@@ -53,9 +60,12 @@ $(window).load(function()
 	};
 	heatmap.ontouchend = function(e) {	
 		drag = false;
-		Pointer.prvS = Pointer.mapS;
-		Pointer.prvX = Pointer.mapX;
-		Pointer.prvY = Pointer.mapY;
+//		if(touches.length == 2) {
+			Pointer.prvS = Pointer.mapS;
+//		} else {
+			Pointer.prvX = Pointer.mapX;
+			Pointer.prvY = Pointer.mapY;
+//		}
 	};
 /*
 	$('#heatmap').on('mousedown', function(e) {

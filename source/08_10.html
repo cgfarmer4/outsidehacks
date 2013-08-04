@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head><script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Outside Lands 2013</title>
+  <meta name="title" content="Outside Lands 2013" />
+  <meta name="description" content="See who's playing Outside Lands 2013, which of your friends are going, and pick your own favorites." />
+  
+  <link rel="shortcut icon" href="http://www.sfoutsidelands.com/favicon.ico" type="image/x-icon" />
+  
+  <link rel="image_src" href="http://s3.amazonaws.com/dostuff-production/property_assets/3020/osl_logo_main.PNG" />
+  
+  
+  <script src="http://t.dostuffmedia.com/livejs.js?poe=1104" type="text/javascript"></script>
+    
+                  
+      <link href="http://cdn1.dostuffmedia.com/stylesheets/jquery/1.8.16/jquery-ui-1.8.16.custom.css?1352906122" media="screen" rel="stylesheet" type="text/css" />
+      
+            <script src="http://s3.amazonaws.com/dostuff-production/code_asset/103/javascript_20120611182541.js?1339439141" type="text/javascript"></script>
+<link href="http://s3.amazonaws.com/dostuff-production/code_asset/102/layout_css_20120808141724.css?1344435444" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://s3.amazonaws.com/dostuff-production/code_asset/2484/compiled/compiled_ca_custom_sass_20130725192545.css?1374780345" media="screen" rel="stylesheet" type="text/css" />
+      <link href="http://s3.amazonaws.com/dostuff-production/code_asset/2485/ca_custom_css_20130729212249.css?1375132969" media="screen" rel="stylesheet" type="text/css" />      <script src="http://s3.amazonaws.com/dostuff-production/code_asset/2486/ca_custom_js_20130725210305.js?1374786185" type="text/javascript"></script>      <script src="http://cdn1.dostuffmedia.com/javascripts/festival/jquery-ui-1.8.9.custom.festival.min.js?1352906122" type="text/javascript"></script>
+      
+            <link href='http://fonts.googleapis.com/css?family=Cabin:400,700,600,400italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,900' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300' rel='stylesheet' type='text/css'>            
+        <script>
+  $(document).ready( function() {
+    $(".ds-player").gs_player({
+      onchangestate : function ($requested_band, $prev_song, state) {
+        var band_is_playing_class = 'ds-player-show-state-playing';
+        var _get_holder = function($song) {
+          return $song
+                  .parents()
+                  .andSelf()
+                    .filter('.ds-player-show-state');
+        }
+
+        var $requested_band_holder = _get_holder($requested_band)
+        // if some other band was playing - get its holder, and reset it as well
+        if ($prev_song) {
+          var $prev_song_holder = _get_holder($prev_song);
+        }
+
+        switch(state) {
+          case 'playing':
+            if ($prev_song_holder) {
+              $prev_song_holder.removeClass(band_is_playing_class)
+            }
+            $requested_band_holder.addClass(band_is_playing_class);
+            break;
+          case 'paused':
+            $requested_band_holder.removeClass(band_is_playing_class);
+            break;
+        }
+      }
+    });
+  });
+</script>
+    <script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
+  <script src="http://cdn4.dostuffmedia.com/javascripts/shared/ds_player.js?1352906122" type="text/javascript"></script>
+  <link href="http://cdn1.dostuffmedia.com/stylesheets/ds-player/player.css?1352906122" media="screen" rel="stylesheet" type="text/css" />
+
+  
+  <script>
+    $(function() {
+      $(document).bind('ds-player-change-state', function(event, data) {
+        // we probably want to collect more data from attributes here, like real band_id, etc
+        var metabar_update_url = '/metabar';
+        $.ajax({
+          type: 'GET',
+          url : metabar_update_url,
+          data : data
+        });
+      });
+    })
+  </script>
+
+<script>
+  jQuery(document).ready(function($){
+    
+  (function(){
+  var timeout;
+  var showFacebookFriends = $('#ds-content').data('ds-hovercards-version') == 'facebook';
+
+$.fn.lineup_bubble = function() {
+  var $this = $(this);
+  // it will be called from playe callback on schedule page as well
+  // so we want to be sure that bubble is not added to ds-event-boxed
+  if ($this.hasClass('band') || $this.hasClass('ds-event-lower')) {
+    var has_bubble = $this.data('lineup-bubble-has-bubble');
+    if (!has_bubble) {
+      $this.append($('<span class="ds-text" />').text($this.text()));
+      $this.data('lineup-bubble-has-bubble', true);
+    }
+  }
+  return $this;
+}
+
+// this function is used for hovercards on festivals
+// referenced from tooltip.js.erb
+var goAwayFacebook = false;
+var add_remove_click = function(event) {
+  var $dsAddRem = $(this);
+  var isBand = event.data.isBand, triggerID;
+    for_facebook_app = $('body').hasClass('ds-facebook-app');
+  
+  if (!event.data.triggerID) {
+    triggerID = $dsAddRem.attr('band_id');
+  } else {
+    triggerID = event.data.triggerID
+  }
+
+  var toggleURL = isBand ? ['/band/', triggerID, '/fans/toggle.js'].join('') : ['/vote/', triggerID, '/toggle.js'].join('');
+  if (for_facebook_app) {
+    var tab_id = $('body').attr("ds-tab-id");
+    toggleURL = "/contest/pagetab/" + tab_id + "/toggle/" + triggerID;
+  }
+
+  if ($dsAddRem.hasClass('ds-disabled')) return false;
+
+  $dsAddRem.addClass('ds-disabled');
+
+  var params = {};
+
+  var showFacebookFriends = $('#ds-content').data('ds-hovercards-version') == 'facebook';
+  if (showFacebookFriends) {
+    params.v6 = 1;
+  } else {
+    params.v3 = 1;
+  }
+  if ( $('body').hasClass('ds-popup-v8') ) {
+    var data = isBand ? (params.v8 = 1) : (params.v8lol = 1);
+  }
+  
+    }
+
+var $metabar_add = $('#ds-metabar .ds-add-remove');
+// metabar add/remove works only with band voting now, hence the isBand: true
+$metabar_add.live('click', {isBand : true}, add_remove_click)
+
+
+$('.ds-lineup > ul > li > a, .ds-schedule .ds-event-box, ul.ds-lineup > li > em  > span > a')
+  .add('.ds-event-lower .ds-event-lower').hover(
+  function() {
+    var $this = $(this),
+        triggerID = this.id,
+        tooltipState = $this.data('ds-tooltip-state'),
+        isBand = $this.hasClass('band');
+        if (!isBand) {
+          isBand = $this.hasClass('band-image');
+        }
+        lower_tooltip = $this.hasClass('band-image') ? ' ds-tooltip-lower' : '';
+        for_facebook_app = $('body').hasClass('ds-facebook-app');
+
+            $this.lineup_bubble();
+
+    if ($this.hasClass('band-image')) {
+      $this.addClass('ds-hover-image');
+    }
+
+    $this
+      .addClass('ds-hover')
+            .parent()
+        .addClass('ds-active');
+
+    // add new tooltip if only there is no tooltip already
+    if (typeof tooltipState === 'undefined') {
+      var $tooltip = $('<span class="ds-tooltip' + lower_tooltip + '">\
+                          <span class="ds-arrow"></span>\
+                          <span class="ds-arrow-bg"></span>\
+                          <span class="ds-content"><span class="ds-tooltip-band-actions">Loading...</span></span>\
+                        </span>');
+      if (showFacebookFriends) {
+        $tooltip.addClass('ds-tooltip-fb-friends');
+      }
+      $this
+                .data('ds-tooltip-state', 'added')
+        .prepend($tooltip);
+      if ($("body").hasClass("ds-popup-v8")) {
+        adjustToolTipPosition($this, $tooltip);
+      }
+    }
+
+    if (timeout) clearTimeout(timeout);
+
+    if ($this.hasClass('no-popup')) {
+      $(this).find('.ds-tooltip, .ds-text').remove();
+    } else if (tooltipState != 'loaded' && tooltipState != 'requesting') {
+            timeout = setTimeout(function(){
+        var has_song = $this.hasClass('ds-player-show-state');
+        var loadURL = [(isBand ? "/band/" : "/event/"), triggerID, "/fpup"].join('');
+        if (for_facebook_app) { 
+          var tab_id = $('body').attr("ds-tab-id");
+          loadURL = "/contest/pagetab/" + tab_id + "/hover/" + triggerID;
+        }
+        var params = {};
+        if (has_song) {
+          params.has_song = true;
+        }
+        if (showFacebookFriends) {
+          params.version = 'fb';
+        }
+                params = $.param(params);
+        params && ( loadURL += '?' + params );
+
+        $this
+          .data('ds-tooltip-state', 'requesting')
+          .find('> .ds-tooltip > .ds-content')
+          .load(loadURL, null, function() {
+            $this.data('ds-tooltip-state', 'loaded');
+            // update ds-song status
+            if (has_song) {
+              // grab song node
+              var $ds_song = $this.find('.ds-song');
+              // read player status, gs-player change callbacks put it here
+              var player_state = $this.data('ds-player-state');
+
+              if (player_state == 'playing') {
+                $ds_song
+                  .addClass('ds-currently-playing')
+                  .removeClass('ds-currently-paused');
+              } else if (player_state == 'paused') {
+                $ds_song
+                  .addClass('ds-currently-paused')
+                  .removeClass('ds-currently-playing');
+              }
+            }
+
+            $this.find('.ds-add-remove').live('click', {isBand : isBand, triggerID: triggerID}, add_remove_click);
+          });
+      }, 400);
+    }
+
+        $this
+      .find('.ds-tooltip')
+        .bind('click', function(e){
+          e.preventDefault();
+          if ($(e.target).is('a')) {
+            location.href = e.target.href;
+          }
+        });
+
+    
+  },
+
+  function() {
+    // delete all previously created stuff
+    var $this = $(this);
+
+    $this
+      .removeClass('ds-hover')
+      .parent()
+        .removeClass('ds-active')
+    if ($this.hasClass('band-image')) {
+      $this.removeClass('ds-hover-image');
+    }
+    
+    if (timeout) clearTimeout(timeout);
+  }
+);
+})();
+  
+
+(function(){
+  var page_type = 'schedule',
+    eventType = 'mousedown',
+    page_event_id = 0;
+  
+    
+    $('li.ds-share-fb')
+    .find('a')
+      .bind(eventType, function(){
+        if(typeof t_string === 'undefined'){t_string = 0;} _gaq.push(['t2._trackPageview', '/vpv/epv/f-245/' + page_type + '/page/share-facebook/local/0/' + page_event_id + '/none/0/0/' + t_string + '/']);      });
+  $('li.ds-share-tw')
+    .find('a')
+      .bind(eventType, function(){
+        if(typeof t_string === 'undefined'){t_string = 0;} _gaq.push(['t2._trackPageview', '/vpv/epv/f-245/' + page_type + '/page/share-twitter/local/0/' + page_event_id + '/none/0/0/' + t_string + '/']);      });
+  $('li.ds-share-em')
+    .find('a')
+      .bind(eventType, function(){
+        if(typeof t_string === 'undefined'){t_string = 0;} _gaq.push(['t2._trackPageview', '/vpv/epv/f-245/' + page_type + '/page/share-email/local/0/' + page_event_id + '/none/0/0/' + t_string + '/']);      });
+  $('li.ds-share-addthis')
+    .find('a')
+      .bind(eventType, function(){
+        if(typeof t_string === 'undefined'){t_string = 0;} _gaq.push(['t2._trackPageview', '/vpv/epv/f-245/' + page_type + '/page/share-addthis/local/0/' + page_event_id + '/none/0/0/' + t_string + '/']);      });
+
+    $('a.ds-band-add')
+    .bind(eventType, function(){
+      if(typeof t_string === 'undefined'){t_string = 0;} _gaq.push(['t2._trackPageview', '/vpv/epv/f-245/' + page_type + '/page/add-band/local/0/' + page_event_id + '/none/0/0/' + t_string + '/']);    });
+  $('a.ds-add-remove')
+    .live(eventType, function(){
+      var page_event_id = $(this).attr('band_id');
+      if(typeof t_string === 'undefined'){t_string = 0;} _gaq.push(['t2._trackPageview', '/vpv/epv/f-245/' + page_type + '/page/add-band-hovercard/local/0/' + page_event_id + '/none/0/0/' + t_string + '/']);    });
+  $('a.ds-song')
+    .live(eventType, function(){
+      var page_event_id = $(this).attr('band_id');
+      if(typeof t_string === 'undefined'){t_string = 0;} _gaq.push(['t2._trackPageview', '/vpv/epv/f-245/' + page_type + '/page/play-song/local/0/' + page_event_id + '/none/0/0/' + t_string + '/']);    });
+    
+    $('input.ds-comments-submit')
+    .live(eventType, function(){
+      var page_event_id = $(this).attr('band_id');
+      if(typeof t_string === 'undefined'){t_string = 0;} _gaq.push(['t2._trackPageview', '/vpv/epv/f-245/' + page_type + '/page/comment/local/0/' + page_event_id + '/none/0/0/' + t_string + '/']);    });
+
+})();
+
+
+    // current hostname 
+    var hostname_regex = new RegExp(location.hostname.split('.').slice(1).join('.'), 'i');
+    
+    $("a").each(function(){
+      /* 
+        we have to use "hostname" and not "href", because 
+        there might be our hostname in get attribute/value pairs 
+        like "http://twitter.com?status=go+to+HOSTNAME.COM"
+      */
+      if ( (!hostname_regex.test(this.hostname)) && !(this.href == "javascript:void(0);") ) {
+        $(this)
+          .addClass("external")
+          .attr("target","_blank");
+      }
+    });
+
+  });
+</script>
+    <script>var ds_lang = "en";</script>
+
+    
+  
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1158508-5']);
+  _gaq.push(['_setDomainName', 'sfoutsidelands.com']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+      _gaq.push(['t2._setAccount', 'UA-68280-26']);
+    _gaq.push(['t2._setDomainName', 'lineup.sfoutsidelands.com']);
+    _gaq.push(['t2._setAllowLinker', true]);
+    _gaq.push(['t2._trackPageview']);
+    _gaq.push(['t3._setAccount', 'UA-68280-43']);
+    _gaq.push(['t3._setDomainName', 'lineup.sfoutsidelands.com']);
+    _gaq.push(['t3._setAllowLinker', true]);
+      (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+
+<body
+  ds-language = "en"
+  class="  ds-not-logged-in ">
+        <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+                FB.init({
+        appId   : '375843939115127',
+        status  : false,
+        cookie  : true,
+        xfbml   : true,
+        oauth   : true
+      });
+
+          
+              if(window.location.pathname == "/login" || window.location.pathname == "/join"){
+      FB.Event.subscribe('auth.statusChange', function(response) {
+        if (response.status === 'connected') {
+          if (response.authResponse) {
+            sr = response.authResponse.signedRequest;
+            window.location = '/facebook/process-login?fb_sr='+sr;
+          }
+        }
+      });
+    }
+    
+
+          
+          $(document).ready( function() {
+            $('.ds-facebook-logout').click(function() {
+              FB.logout(function(response) {
+                window.location = '/logout';
+              });
+            });
+          });
+        };
+        (function(d){
+          var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+          js = d.createElement('script'); js.id = id; js.async = true;
+          js.src = "//connect.facebook.net/en_US/all.js";
+          d.getElementsByTagName('head')[0].appendChild(js);
+        }(document));
+      </script>
+  <div id="page">
+    
+    <div id="header">
+                                <div class="masthead"><img src="http://s3.amazonaws.com/dostuff-production/property_assets/6652/top-clr.png" width="960" height="200" border="0" usemap="#mast"></div>
+    <div class="nav"><span class="nav-link"><a rel="anylinkmenu1"  href="http://www.sfoutsidelands.com/news" class="menuanchorclass">FESTIVAL</a> <span class="nav-sep">&#8226;</span> <a rel="anylinkmenu12" class="menuanchorclass" href="http://lineup.sfoutsidelands.com/?sort=day">LINEUP</a> <span class="nav-sep">&#8226;</span> <a rel="anylinkmenu8" class="menuanchorclass" onmouseover="this.style.cursor='pointer'" href="http://www.sfoutsidelands.com/../../tickets/" style="cursor: pointer;">TICKETS</a> <span class="nav-sep">&#8226;</span> <a href="http://www.sfoutsidelands.com/news">NEWS</a> <span class="nav-sep">&#8226;</span> <a href="http://www.sfoutsidelands.com/taste" class="menuanchorclass" rel="anylinkmenu3">ATTRACTIONS</a> <span class="nav-sep">&#8226;</span> <a href="http://www.sfoutsidelands.com/about" class="menuanchorclass" rel="anylinkmenu6">ABOUT</a> <span class="nav-sep">&#8226;</span> <a href="http://www.sfoutsidelands.com/ggp" class="menuanchorclass" rel="anylinkmenu4">GOLDEN GATE PARK</a> <span class="nav-sep">&#8226;</span> <a href="http://www.sfoutsidelands.com/ecolands" class="menuanchorclass" rel="anylinkmenu10">GREENING</a> <span class="nav-sep">&#8226;</span> <a href="http://www.sfoutsidelands.com/partners">PARTNERS</a> <span class="nav-sep">&#8226;</span> <a href="http://outsidelands.shop.musictoday.com/" target="_blank">STORE</a></span></div>
+                            <ul class="ds-login-links container-shadow">
+  
+    <li><a href="http://lineup.sfoutsidelands.com/login" class="blk">Log In <span class="grn">&raquo;</span></a></li>
+    <li><a href="http://lineup.sfoutsidelands.com/join" class="blk">Register <span class="grn">&raquo;</span></a></li>
+    <li></li>
+  
+</ul>    </div>
+    
+    <div id="ds-content-outer-wrapper">
+      <div id="ds-content-wrapper">
+        <div id="ds-content-inner-wrapper">
+          <div id="ds-content" data-ds-hovercards-version="facebook">
+            
+
+
+
+<div class="ds-header">
+  <div class="ds-arrange">
+  <h2>Days</h2>
+  <div>
+    
+          <span>Sat, Aug 10</span>
+        <span class="ds-dropdown-arrow"></span>
+    <ul>
+                    <li class="current"><a href="/events/2013/08/09/">Fri, Aug 9</a></li>
+                <li class="current"><a href="/events/2013/08/11/">Sun, Aug 11</a></li>
+        </ul>
+  </div>
+</div>
+  <div class="ds-custom-lineup">
+    <h2>Custom Schedule</h2>
+    <div class="ds-custom-lineup-friends">
+      <p>Join 13996 Outside Lands fans and <a href="http://lineup.sfoutsidelands.com/login">create your custom schedule.</a></p>
+    </div>
+    <div class="ds-create-a-lineup">
+      <a href="http://lineup.sfoutsidelands.com/login" class="ds-create-join ds-button" onclick="_gaq.push(['_trackEvent','create','schedule','schedule-top']);">+ Create a Schedule</a>
+    </div>
+  </div>
+  <div class="ds-share">
+  <h2>Share</h2>
+  <ul>
+    <li class="ds-share-fb">
+      <a href="http://www.facebook.com/sharer.php?u=http://lineup.sfoutsidelands.com/schedule?utm=2013_facebook_share_schedule" title="Post to Facebook" onclick="_gaq.push(['_trackEvent','share','facebook','schedule']);window.open(this.href,' sharer', 'toolbar=0, status=0, width=626, height=436'); return false;">Post to Facebook</a>
+    </li>
+    <li class="ds-share-tw">
+      <a href="http://twitter.com/?status=The 2013 Outside Lands schedule is out! http://lineup.sfoutsidelands.com/schedule" target="_blank" title="Post to Twitter" onclick="_gaq.push(['_trackEvent','share','twitter','schedule']);">Post to Twitter</a>
+    </li>
+    <li class="ds-share-em">
+      <a href="mailto:?subject=The 2013 Outside Lands schedule is out!&amp;body=http://lineup.sfoutsidelands.com/events/2013/08/10" title="Email your Friends" onclick="_gaq.push(['_trackEvent','share','email','schedule']);">Email your Friends</a>
+    </li>
+    <li class="ds-share-addthis">
+      
+      <script>
+      addthis_pub = '';
+      addthis_options = 'favorites, digg, delicious, reddit, live, more';
+      </script>
+      <a onclick="_gaq.push(['_trackEvent','share','addthis','schedule']); return addthis_open(this, '', '[URL]', '[TITLE]');" href="http://www.addthis.com/bookmark.php" title="Post Everywhere Else">Post Everywhere Else</a>
+    </li>
+  </ul>
+</div>
+
+  
+
+<div class="ds-icalprint">
+    <div class="ds-aprint">
+    <span class="ds-handle"><span class="ds-aprint-text">Print</span> <span class="ds-triangle">▼</span></span>
+    <div class="  ds-hidden">
+            <a href="/events/print-schedule?1375570103">Custom Schedule PDF</a>
+    </div>
+  </div>
+  <script>
+    (function($){
+      var $handle = $('.ds-aprint > .ds-handle'),
+        $printLinks = $handle.next();
+      $handle.click(function(e){
+        e.stopPropagation();
+        $printLinks.slideToggle();
+      });
+      $(document).click(function(){
+        $printLinks.slideUp();
+      });
+    })(jQuery);
+  </script>
+</div>
+</div>
+
+
+      
+
+<div class="ds-schedule ds-player day10">
+  
+    
+      
+
+<table cellspacing="0" cellpadding="0">
+  <tr class="ds-schedule-header">
+    <th class="ds-time"></th>
+          <th class="ds-venue-column-265732-20130810">
+                  Lands End              </th>
+          <th class="ds-venue-column-265733-20130810">
+                  Sutro              </th>
+          <th class="ds-venue-column-265734-20130810">
+                  Twin Peaks              </th>
+          <th class="ds-venue-column-265735-20130810">
+                  Panhandle              </th>
+          <th class="ds-venue-column-265759-20130810">
+                  The Dome by Heineken              </th>
+          <th class="ds-venue-column-265918-20130810">
+                  The Barbary              </th>
+      </tr>
+  <tr>
+    <th class="ds-times">
+      <ul>
+                                              <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-100">
+            12:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-115">
+            12:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-130">
+            12:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-145">
+            12:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-200">
+            1:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-215">
+            1:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-230">
+            1:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-245">
+            1:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-300">
+            2:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-315">
+            2:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-330">
+            2:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-345">
+            2:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-400">
+            3:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-415">
+            3:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-430">
+            3:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-445">
+            3:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-500">
+            4:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-515">
+            4:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-530">
+            4:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-545">
+            4:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-600">
+            5:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-615">
+            5:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-630">
+            5:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-645">
+            5:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-700">
+            6:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-715">
+            6:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-730">
+            6:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-745">
+            6:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-800">
+            7:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-815">
+            7:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-830">
+            7:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-845">
+            7:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-900">
+            8:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-915">
+            8:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-930">
+            8:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-945">
+            8:45</li>
+                                                <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-1000">
+            9:00</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-1015">
+            9:15</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-1030">
+            9:30</li>
+          <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-1045">
+            9:45</li>
+                                    <li style="height: 29.0px; line-height: 29.0px;" class="ds-schedule-row-1100">10:00</li>
+              </ul>
+    </th>
+          <td class="ds-stage ds-stage1 ds-venue-column-265732-20130810">  
+        <div class="ds-bands">
+                      
+              <div class="ds-event-box    ds-event-1886374  ds-ecat-music" id="1886374" style="top:120.0px;height:99.0px;line-height:99.0px"><span class="ds-vert-align" style="height:99.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/the-soft-white-sixties">The Soft White Sixties</a></strong><span class="ds-time-range" style="font-size:1.0em;">1:00 - 1:50</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886375  ds-ecat-music" id="1886375" style="top:280.0px;height:99.0px;line-height:99.0px"><span class="ds-vert-align" style="height:99.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/gary-clark-jr">Gary Clark Jr.</a></strong><span class="ds-time-range" style="font-size:1.0em;">2:20 - 3:10</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886376  ds-ecat-music" id="1886376" style="top:440.0px;height:99.0px;line-height:99.0px"><span class="ds-vert-align" style="height:99.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/young-the-giant">Young The Giant</a></strong><span class="ds-time-range" style="font-size:1.0em;">3:40 - 4:30</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886377  ds-ecat-music" id="1886377" style="top:600.0px;height:119.0px;line-height:119.0px"><span class="ds-vert-align" style="height:119.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/jurassic-5">Jurassic 5</a></strong><span class="ds-time-range" style="font-size:1.0em;">5:00 - 6:00</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886378  ds-ecat-music" id="1886378" style="top:780.0px;height:139.0px;line-height:139.0px"><span class="ds-vert-align" style="height:139.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/yeah-yeah-yeahs">Yeah Yeah Yeahs</a></strong><span class="ds-time-range" style="font-size:1.0em;">6:30 - 7:40</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886379  ds-ecat-music" id="1886379" style="top:1010.0px;height:179.0px;line-height:179.0px"><span class="ds-vert-align" style="height:179.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/nine-inch-nails">Nine Inch Nails</a></strong><span class="ds-time-range" style="font-size:1.0em;">8:25 - 9:55</span></div></div>
+                              </div>
+      </td>
+          <td class="ds-stage ds-stage2 ds-venue-column-265733-20130810">  
+        <div class="ds-bands">
+                      
+              <div class="ds-event-box    ds-event-1886392  ds-ecat-music" id="1886392" style="top:0.0px;height:79.0px;line-height:79.0px"><span class="ds-vert-align" style="height:79.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/bhi-bhiman">Bhi Bhiman</a></strong><span class="ds-time-range" style="font-size:1.0em;">12:00 - 12:40</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886393  ds-ecat-music" id="1886393" style="top:130.0px;height:79.0px;line-height:79.0px"><span class="ds-vert-align" style="height:79.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/the-lone-bellow">The Lone Bellow</a></strong><span class="ds-time-range" style="font-size:1.0em;">1:05 - 1:45</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886394  ds-ecat-music" id="1886394" style="top:260.0px;height:89.0px;line-height:89.0px"><span class="ds-vert-align" style="height:89.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/milo-greene">Milo Greene</a></strong><span class="ds-time-range" style="font-size:1.0em;">2:10 - 2:55</span></div></div>
+            
+              <div band_id="58400" band_name="Growlers" class="ds-event-box    ds-event-1886395  ds-ecat-music ds-player-show-state ds-song-data" id="1886395" song_id="38827984" song_name="Someday" style="top:410.0px;height:89.0px;line-height:89.0px"><span class="ds-vert-align" style="height:89.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/the-growlers">The Growlers</a></strong><span class="ds-time-range" style="font-size:1.0em;">3:25 - 4:10</span></div></div>
+            
+              <div band_id="49017" band_name="Thao &amp; The Get Down Stay Down" class="ds-event-box    ds-event-1886396  ds-ecat-music ds-player-show-state ds-song-data" id="1886396" song_id="37600000" song_name="Holy Roller" style="top:560.0px;height:99.0px;line-height:99.0px"><span class="ds-vert-align" style="height:99.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/thao-and-the-get-down-stay-down">Thao & The Get Down Stay Down</a></strong><span class="ds-time-range" style="font-size:1.0em;">4:40 - 5:30</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886397  ds-ecat-music" id="1886397" style="top:720.0px;height:99.0px;line-height:99.0px"><span class="ds-vert-align" style="height:99.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/the-tallest-man-on-earth">The Tallest Man on Earth</a></strong><span class="ds-time-range" style="font-size:1.0em;">6:00 - 6:50</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886398  ds-ecat-music" id="1886398" style="top:880.0px;height:119.0px;line-height:119.0px"><span class="ds-vert-align" style="height:119.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/the-head-and-the-heart">The Head and the Heart</a></strong><span class="ds-time-range" style="font-size:1.0em;">7:20 - 8:20</span></div></div>
+                              </div>
+      </td>
+          <td class="ds-stage ds-stage3 ds-venue-column-265734-20130810">  
+        <div class="ds-bands">
+                      
+              <div band_id="40261" band_name="Social Studies" class="ds-event-box    ds-event-1886412  ds-ecat-music ds-player-show-state ds-song-data" id="1886412" song_id="38043024" song_name="Terracur" style="top:90.0px;height:79.0px;line-height:79.0px"><span class="ds-vert-align" style="height:79.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/social-studies">Social Studies</a></strong><span class="ds-time-range" style="font-size:1.0em;">12:45 - 1:25</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886413  ds-ecat-music" id="1886413" style="top:260.0px;height:89.0px;line-height:89.0px"><span class="ds-vert-align" style="height:89.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/atlas-genius">Atlas Genius</a></strong><span class="ds-time-range" style="font-size:1.0em;">2:10 - 2:55</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886414  ds-ecat-music" id="1886414" style="top:440.0px;height:99.0px;line-height:99.0px"><span class="ds-vert-align" style="height:99.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/youth-lagoon">Youth Lagoon</a></strong><span class="ds-time-range" style="font-size:1.0em;">3:40 - 4:30</span></div></div>
+            
+              <div band_id="369559" band_name="Baauer" class="ds-event-box    ds-event-1886415  ds-ecat-music ds-player-show-state ds-song-data" id="1886415" song_id="38689496" song_name="Dum Dum" style="top:630.0px;height:99.0px;line-height:99.0px"><span class="ds-vert-align" style="height:99.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/baauer">Baauer</a></strong><span class="ds-time-range" style="font-size:1.0em;">5:15 - 6:05</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886416  ds-ecat-music" id="1886416" style="top:820.0px;height:119.0px;line-height:119.0px"><span class="ds-vert-align" style="height:119.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/grizzly-bear">Grizzly Bear</a></strong><span class="ds-time-range" style="font-size:1.0em;">6:50 - 7:50</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886417  ds-ecat-music" id="1886417" style="top:1040.0px;height:149.0px;line-height:149.0px"><span class="ds-vert-align" style="height:149.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/phoenix">Phoenix</a></strong><span class="ds-time-range" style="font-size:1.0em;">8:40 - 9:55</span></div></div>
+                              </div>
+      </td>
+          <td class="ds-stage ds-stage4 ds-venue-column-265735-20130810">  
+        <div class="ds-bands">
+                      
+              <div class="ds-event-box    ds-event-1886430  ds-ecat-music" id="1886430" style="top:0.0px;height:79.0px;line-height:79.0px"><span class="ds-vert-align" style="height:79.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/locura">LoCura</a></strong><span class="ds-time-range" style="font-size:1.0em;">12:00 - 12:40</span></div></div>
+            
+              <div band_id="481096" band_name="Cherub" class="ds-event-box    ds-event-1886431  ds-ecat-music ds-player-show-state ds-song-data" id="1886431" song_id="35652217" song_name="Doses and Mimosas" style="top:170.0px;height:79.0px;line-height:79.0px"><span class="ds-vert-align" style="height:79.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/cherub">Cherub</a></strong><span class="ds-time-range" style="font-size:1.0em;">1:25 - 2:05</span></div></div>
+            
+              <div band_id="129334" band_name="James McCartney" class="ds-event-box    ds-event-1886432  ds-ecat-music ds-player-show-state ds-song-data" id="1886432" song_id="38745901" song_name="Strong As You" style="top:350.0px;height:79.0px;line-height:79.0px"><span class="ds-vert-align" style="height:79.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/james-mccartney">James McCartney</a></strong><span class="ds-time-range" style="font-size:1.0em;">2:55 - 3:35</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886433  ds-ecat-music" id="1886433" style="top:540.0px;height:79.0px;line-height:79.0px"><span class="ds-vert-align" style="height:79.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/bombino">Bombino</a></strong><span class="ds-time-range" style="font-size:1.0em;">4:30 - 5:10</span></div></div>
+            
+              <div band_id="47407" band_name="Mother Hips" class="ds-event-box    ds-event-1886434  ds-ecat-music ds-player-show-state ds-song-data" id="1886434" song_id="36261640" song_name="Hey Emilie" style="top:730.0px;height:89.0px;line-height:89.0px"><span class="ds-vert-align" style="height:89.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/the-mother-hips">The Mother Hips</a></strong><span class="ds-time-range" style="font-size:1.0em;">6:05 - 6:50</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886435  ds-ecat-music" id="1886435" style="top:940.0px;height:89.0px;line-height:89.0px"><span class="ds-vert-align" style="height:89.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/griz">GRiZ</a></strong><span class="ds-time-range" style="font-size:1.0em;">7:50 - 8:35</span></div></div>
+                              </div>
+      </td>
+          <td class="ds-stage ds-stage5 ds-venue-column-265759-20130810">  
+        <div class="ds-bands">
+                      
+              <div class="ds-event-box    ds-event-1886654  ds-ecat-music" id="1886654" style="top:0.0px;height:179.0px;line-height:179.0px"><span class="ds-vert-align" style="height:179.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/dub-gabriel">Dub Gabriel</a></strong><span class="ds-time-range" style="font-size:1.0em;">12:00 - 1:30</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886656  ds-ecat-music" id="1886656" style="top:180.0px;height:179.0px;line-height:179.0px"><span class="ds-vert-align" style="height:179.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/dj-shotnez">DJ Shotnez (Balkan Beat Box)</a></strong><span class="ds-time-range" style="font-size:1.0em;">1:30 - 3:00</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886655  ds-ecat-music" id="1886655" style="top:360.0px;height:179.0px;line-height:179.0px"><span class="ds-vert-align" style="height:179.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/sam-spiegel">Sam Spiegel (NASA)</a></strong><span class="ds-time-range" style="font-size:1.0em;">3:00 - 4:30</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886657  ds-ecat-music" id="1886657" style="top:540.0px;height:179.0px;line-height:179.0px"><span class="ds-vert-align" style="height:179.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/lazy-rich">Lazy Rich</a></strong><span class="ds-time-range" style="font-size:1.0em;">4:30 - 6:00</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1886658  ds-ecat-music" id="1886658" style="top:720.0px;height:239.0px;line-height:239.0px"><span class="ds-vert-align" style="height:239.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/krafty-kuts">Krafty Kuts</a></strong><span class="ds-time-range" style="font-size:1.0em;">6:00 - 8:00</span></div></div>
+                              </div>
+      </td>
+          <td class="ds-stage ds-stage6 ds-venue-column-265918-20130810">  
+        <div class="ds-bands">
+                      
+              <div class="ds-event-box    ds-event-1890313  ds-ecat-music" id="1890313" style="top:0.0px;height:119.0px;line-height:119.0px"><span class="ds-vert-align" style="height:119.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:0.9em;"><a href="/band/the-julie-klausner-cabaret-situation-with-guests-bridget-everett-and-the-tender-moments-and-musical-director-jon-spurney">The Julie Klausner Cabaret Situation with guests Bridget Everett & The Tender Moments and musical director Jon Spurney</a></strong><span class="ds-time-range" style="font-size:0.9em;">12:00 - 1:00</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1890312  ds-ecat-music" id="1890312" style="top:180.0px;height:149.0px;line-height:149.0px"><span class="ds-vert-align" style="height:149.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:0.6em;"><a href="/band/competitive-erotic-fan-fiction-with-matt-braunger-kate-berlant-jesse-elias-emily-heller-dave-hill-natasha-leggero-joe-mande-and">Competitive Erotic Fan Fiction w/Matt Braunger, Kate Berlant, Jesse Elias, Emily Heller,  Dave Hill, Natasha Leggero, Joe Mande </a></strong><span class="ds-time-range" style="font-size:0.6em;">1:30 - 2:45</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1890311  ds-ecat-music" id="1890311" style="top:390.0px;height:149.0px;line-height:149.0px"><span class="ds-vert-align" style="height:149.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/crash-test-with-rob-huebel-and-guests-natasha-leggero-bruce-mcculloch-and-morgan-murphy">Crash Test with Rob Huebel and guests Natasha Leggero,  Bruce McCulloch and Morgan Murphy</a></strong><span class="ds-time-range" style="font-size:1.0em;">3:15 - 4:30</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1890310  ds-ecat-music" id="1890310" style="top:600.0px;height:149.0px;line-height:149.0px"><span class="ds-vert-align" style="height:149.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/bridget-everett-and-the-tender-moments">Bridget Everett & The Tender Moments hosted by Natasha Leggero</a></strong><span class="ds-time-range" style="font-size:1.0em;">5:00 - 6:15</span></div></div>
+            
+              <div class="ds-event-box    ds-event-1890309  ds-ecat-music" id="1890309" style="top:810.0px;height:149.0px;line-height:149.0px"><span class="ds-vert-align" style="height:149.0px;">&nbsp;</span><div class="ds-event-container"><strong class="ds-event-title" style="font-size:1.0em;"><a href="/band/night-train-with-wyatt-cenac-with-guests-matt-braunger-emily-heller-joe-mande-and-glynn-washington">Night Train with Wyatt Cenac with guests Matt Braunger, Emily Heller, Joe Mande and Glynn Washington</a></strong><span class="ds-time-range" style="font-size:1.0em;">6:45 - 8:00</span></div></div>
+                              </div>
+      </td>
+      </tr>
+</table>
+    
+    
+      <ul class="ds-schedule-days">
+          <li class=""><a href="/events/2013/08/09/">Friday, August  9</a></li>
+          <li class="ds-schedule-days-current-date"><a href="/events/2013/08/10/">Saturday, August 10</a></li>
+          <li class=""><a href="/events/2013/08/11/">Sunday, August 11</a></li>
+  </ul>
+  </div>
+
+    
+<div id="ds-gs-player-meta-wrapper">
+  <div id="ds-gs-player-wrapper">
+    <div class="ds-gs-player-buttons" id="ds-gs-player-buttons-prev">
+      <a href="#"></a>
+    </div>
+    <div id="ds-gs-player-z-index">
+      <div id="ds-gs-player">
+        <a href="http://www.adobe.com/go/getflashplayer">
+          <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+        </a>
+      </div>
+    </div>
+    <div class="ds-gs-player-buttons" id="ds-gs-player-buttons-next">
+      <a href="#"></a>
+    </div>
+  </div>
+
+  <div id="ds-metabar">
+    <span class="ds-metabar-loading">Loading...</span>
+  </div>
+
+</div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="footer">
+                                <div class="footer2" style="margin-top:20px;">
+  <a href="http://www.superflypresents.com/" target="_blank"><img align=
+  "absmiddle" border="0" height="30" src=
+  "http://www.sfoutsidelands.com/images/superfly.png" style="margin-left:25px;"
+  width="65"></a><a href="http://www.apeconcerts.com/" target=
+  "_blank"><img align="absmiddle" border="0" height="20" src=
+  "http://www.sfoutsidelands.com/images/ape.png" style="margin-left:25px;"
+  width="131"></a><a href="http://www.starrhillpresents.com" target=
+  "_blank"><img align="absmiddle" border="0" height="20" src=
+  "http://www.sfoutsidelands.com/images/sh.png" style="margin-left:25px;"
+  width="130"></a><br>
+  <br>
+  &copy;2013 Outside Lands Music and Arts Festival | <a href=
+  "http://www.sfoutsidelands.com/privacy-policy">Privacy Policy</a> | <a href=
+  "http://www.sfoutsidelands.com/terms">Terms of Use</a> | Site by <a href=
+  "http://www.fastatmosphere.com">Fast Atmosphere</a></br>
+  
+</div><map id="Map" name="Map">
+  <area coords="689,219,711,241" href="http://instagram.com/outside_lands"
+  shape="rect" target="_blank">
+  <area coords="662,219,683,242" href=
+  "http://www.youtube.com/user/outsidelands" shape="rect" target="_blank">
+  <area coords="633,218,658,242" href="http://twitter.com/sfoutsidelands"
+  shape="rect" target="_blank">
+  <area coords="603,218,627,244" href="http://www.facebook.com/SFOutsideLands"
+  shape="rect" target="_self">
+  <area coords="228,3,729,204" href="http://www.sfoutsidelands.com/home/" shape="rect">
+  <area coords="3,70,240,185" href=
+  "http://www.ticketmaster.com/event/1C004A7FC5142485" shape="rect" target=
+  "_blank">
+  <area coords="569,215,599,246" href="http://www.sfoutsidelands.com/apps" shape="rect">
+</map> <map id="Map2" name="Map2">
+  <area coords="46,7,117,31" href="#" shape="rect">
+  <area coords="137,7,192,32" href="#" shape="rect">
+  <area coords="215,7,275,30" href="#" shape="rect">
+  <area coords="297,7,345,28" href="#" shape="rect">
+  <area coords="362,7,467,31" href="#" shape="rect">
+  <area coords="489,6,541,32" href="#" shape="rect">
+  <area coords="564,7,718,32" href="#" shape="rect">
+  <area coords="739,7,815,32" href="#" shape="rect">
+  <area coords="830,6,908,32" href="#" shape="rect">
+  <area coords="927,7,983,29" href="#" shape="rect">
+</map> <map id="Map3" name="Map3">
+  <area coords="3,1,637,391" href="http://instagram.com/outside_lands" shape=
+  "rect" target="_blank">
+  <area coords="652,2,938,31" href="mailinglist" shape="rect">
+</map>
+<map name="mast">
+  <area shape="rect" coords="733,4,959,126" href="http://sfoutsidelands.com/tickets"><area shape="rect" coords="287,169,309,190" href="http://www.facebook.com/SFOutsideLands" target="_blank">
+<area shape="rect" coords="311,169,331,189" href="http://twitter.com/sfoutsidelands" target="_blank">
+<area shape="rect" coords="334,169,355,189" href="http://instagram.com/outside_lands" target="_blank">
+<area shape="rect" coords="633,169,658,190" href="http://www.youtube.com/user/outsidelands" target="_blank"><area shape="rect" coords="662,170,704,190" href="#tunein" onclick="return tunein('http://tunein.com/player/station/176462/?partnerId=GoHPH1mf&utm_source=oslsite&utm_medium=webfeature1&utm_campaign=osl2013')">
+<area shape="poly" coords="225,88,260,167,358,149,380,187,591,184,601,156,702,169,729,91,640,67,650,28,599,4,349,3" href="http://sfoutsidelands.com/">
+<area shape="poly" coords="7,17,178,16,186,108,11,105" href="http://www.sfoutsidelands.com/shuttlepass" />
+</map>
+
+
+
+<script type="text/javascript">
+
+function tunein(url) {
+newwindow=window.open(url,'name','height=340,width=730');
+if (window.focus) {newwindow.focus()}
+return false;
+}
+
+//anylinkmenu.init("menu_anchors_class") //call this function at the very *end* of the document!
+
+anylinkmenu.init("menuanchorclass");
+
+  $('.ds-lineup > ul > li > a').bind('changeData', function(e){
+    $this = $(this);
+    if($this.data('ds-tooltip-state') == 'loaded'){
+
+      var $popSimText = $this.find('.fl-pop-similar > p > a');
+      if($popSimText.length > 0){
+        if($popSimText.text() == "PAUL McCARTNEY"){
+          $popSimText.css({"text-transform":"none"});
+        }
+      }
+    }
+  });
+
+
+var $bandTitle = $(".ds-band-desc h1");
+if($bandTitle.length > 0){
+  if($bandTitle.text() == "PAUL McCARTNEY"){
+    $bandTitle.css({"text-transform":"none"});
+  }
+}
+
+/* paul mccartney */
+$("a[id='132981'], a[id='132981'] > .ds-text").css({"text-transform":"none"});
+$("a[id='132981'] .ds-tooltip").css({"text-transform":"uppercase"});
+
+/* lineup subject to change */
+$(".ds-lineup, .ds-schedule").last().after("<h2 style='margin-top:25px;clear:both;font-size:12px;font-weight:bold;color:#437481;text-align:center;'>Lineup subject to change</h2>");
+
+
+</script>
+
+<script type="text/javascript">
+$(".ds-band-main .ds-band-tabs .ds-band-section-title").each(function(i,el){
+    var $el = $(el);
+    var $next = $el.next();
+    if($el.text()=="Video" && $next){
+        if($next.children().length == 0){
+            $next.remove();
+            $el.remove()
+        }
+    }
+})
+</script>
+
+                          </div>
+    
+  </div>
+    <script src="http://s7.addthis.com/js/200/addthis_widget.js"></script>
+
+    <div id="ds-fest-modal-content"><span class="ds-modal-loading">Please wait...</span></div>
+<script type="text/javascript">if (!NREUMQ.f) { NREUMQ.f=function() {
+NREUMQ.push(["load",new Date().getTime()]);
+var e=document.createElement("script");
+e.type="text/javascript";
+e.src=(("http:"===document.location.protocol)?"http:":"https:") + "//" +
+  "js-agent.newrelic.com/nr-100.js";
+document.body.appendChild(e);
+if(NREUMQ.a)NREUMQ.a();
+};
+NREUMQ.a=window.onload;window.onload=NREUMQ.f;
+};
+NREUMQ.push(["nrfj","beacon-3.newrelic.com","523568d535","2038250","IVtXQxNYClxVEExQEgdaTRgIWQJVSA==",0,663,new Date().getTime(),"","","","",""]);</script></body>
+</html>

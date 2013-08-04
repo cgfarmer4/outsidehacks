@@ -1,30 +1,30 @@
-"sunday": [
+{"sunday": [
 	{ 
 		"stage": "Lands End",
 		"artists": [
 			{
 				"name" : "Ivan Neville's Dumpstaphunk",
-				"time" : "12:10 - 1:00",				
-			}
+				"time" : "12:10 - 1:00"				
+			},
 			{
 				"name" : "Fishbone",
-				"time" : "1:30 - 2:20",				
-			}
+				"time" : "1:30 - 2:20"				
+			},
 			{
 				"name" : "Foals",
-				"time" : "2:50 - 3:50",				
+				"time" : "2:50 - 3:50"				
 			},
 			{
 				"name" : "Daryl Hall & John Oates",
-				"time" : "4:20 - 5:20",				
+				"time" : "4:20 - 5:20"				
 			},
 			{
 				"name" : "Vampire Weekend",
-				"time" : "5:50 - 7:00",				
+				"time" : "5:50 - 7:00"				
 			},
 			{
 				"name" : "Red Hot Chili Peppers",
-				"time" : "7:45 - 9:35",				
+				"time" : "7:45 - 9:35"				
 			}
 		]
 	},
@@ -33,27 +33,27 @@
 		"artists": [
 			{
 				"name" : "The Easy Leaves",
-				"time" : "12:00 - 12:45",				
-			}
+				"time" : "12:00 - 12:45"				
+			},
 			{
 				"name" : "Camper Van Beethoven",
-				"time" : "1:15 - 2:00",				
-			}
+				"time" : "1:15 - 2:00"				
+			},
 			{
 				"name" : "Kurt Vile and The Violators",
-				"time" : "2:30 - 3:20",				
+				"time" : "2:30 - 3:20"				
 			},
 			{
 				"name" : "Trombone Shorty & Orleans Avenue",
-				"time" : "3:50 - 4:40",				
+				"time" : "3:50 - 4:40"				
 			},
 			{
 				"name" : "Dawes",
-				"time" : "5:10 - 6:00",				
+				"time" : "5:10 - 6:00"				
 			},
 			{
 				"name" : "Willie Nelson & Family",
-				"time" : "6:30 - 7:40",				
+				"time" : "6:30 - 7:40"				
 			}
 		]
 	},
@@ -62,27 +62,27 @@
 		"artists": [
 			{
 				"name" : "Little Green Cars",
-				"time" : "12:40 - 1:20",				
-			}
+				"time" : "12:40 - 1:20"				
+			},
 			{
 				"name" : "Rudimental",
-				"time" : "2:05 - 2:50",				
-			}
+				"time" : "2:05 - 2:50"				
+			},
 			{
 				"name" : "Emeli Sandé",
-				"time" : "3:35 - 4:25",				
+				"time" : "3:35 - 4:25"				
 			},
 			{
 				"name" : "A-Trak",
-				"time" : "5:10 - 6:00",				
+				"time" : "5:10 - 6:00"				
 			},
 			{
 				"name" : "Matt & Kim",
-				"time" : "6:45 - 7:35",				
+				"time" : "6:45 - 7:35"				
 			},
 			{
 				"name" : "Kaskade",
-				"time" : "8:25 - 9:35",				
+				"time" : "8:25 - 9:35"				
 			}
 		]
 	},
@@ -91,27 +91,27 @@
 		"artists": [
 			{
 				"name" : "The Wild Feathers",
-				"time" : "12:00 - 12:40",				
-			}
+				"time" : "12:00 - 12:40"				
+			},
 			{
 				"name" : "Kopecky Family Band",
-				"time" : "1:20 - 2:00",				
-			}
+				"time" : "1:20 - 2:00"				
+			},
 			{
 				"name" : "Deap Vally",
-				"time" : "2:50 - 3:30",				
+				"time" : "2:50 - 3:30"				
 			},
 			{
 				"name" : "King Tuff",
-				"time" : "4:25 - 5:05",				
+				"time" : "4:25 - 5:05"				
 			},
 			{
 				"name" : "MS MR",
-				"time" : "6:00 - 6:40",				
+				"time" : "6:00 - 6:40"				
 			},
 			{
 				"name" : "Dillon Francis",
-				"time" : "7:35 - 8:20",				
+				"time" : "7:35 - 8:20"				
 			}
 		]
 	},
@@ -120,23 +120,23 @@
 		"artists": [
 			{
 				"name" : "Griffin Camper",
-				"time" : "12:00 - 1:30",				
-			}
+				"time" : "12:00 - 1:30"				
+			},
 			{
 				"name" : "Sleight of Hands",
-				"time" : "1:30 - 3:00",				
-			}
+				"time" : "1:30 - 3:00"				
+			},
 			{
 				"name" : "WhiteNoize",
-				"time" : "3:00 - 4:30",
+				"time" : "3:00 - 4:30"
 			},
 			{
 				"name" : "Gene Farris",
-				"time" : "4:30 - 6:00",				
+				"time" : "4:30 - 6:00"				
 			},
 			{
 				"name" : "DJ Pierre",
-				"time" : "6:00 - 7:30",				
+				"time" : "6:00 - 7:30"				
 			}
 		]
 	},
@@ -145,24 +145,24 @@
 		"artists": [
 			{
 				"name" : "Bring The Rock w/Greg Behrendt & the Reigning Monarchs w/Matt Braunger, Dave Hill, Bruce McCulloch, Thao Nguyen and Nick Thune",
-				"time" : "12:30 - 1:40",				
-			}
+				"time" : "12:30 - 1:40"				
+			},
 			{
 				"name" : "Craig Robinson hosted by Morgan Murphy",
-				"time" : "2:00 - 3:15",				
-			}
+				"time" : "2:00 - 3:15"				
+			},
 			{
 				"name" : "Crash Test with Rob Huebel and guests Natasha Leggero, Joe Mande and Bruce McCulloch",
-				"time" : "3:45 - 4:55",				
+				"time" : "3:45 - 4:55"				
 			},
 			{
 				"name" : "Craig Robinson hosted by Nick Thune",
-				"time" : "5:15 - 6:30",				
+				"time" : "5:15 - 6:30"				
 			},
 			{
 				"name" : "Singin' & Pingin': DJ Purple + American Tripps Present Berlin-Style Ping-Pong + Karaoke Dance Party",
-				"time" : "6:30 - 8:00",				
+				"time" : "6:30 - 8:00"				
 			}
 		]
 	}
-]
+]}

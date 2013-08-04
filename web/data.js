@@ -5,38 +5,38 @@ var data = {
 		"artists": [
 			{
 				"name": "Smith Westerns",
-				"start_time": "12:50",
-				"end_time": "1:40",
-				"duration": "50",
-				"hottness": "0.614625"				
+				"start_time": 50,//"12:50",
+				"end_time": 60+40,//"1:40",
+				"duration": 50,
+				"hottness": 0.614625				
 			},
 			{
 				"name": "Surfer Blood",
-				"start_time": "2:10",
-				"end_time": "3:00",
-				"duration": "50",
-				"hottness": "0.683868"				
+				"start_time": 60*2+10,//"2:10",
+				"end_time": 60*3,//"3:00",
+				"duration": 50,
+				"hottness": 0.683868				
 			},
 			{
 				"name": "Band of Horses",
-				"start_time": "3:30 ",
-				"end_time": "4:30",
-				"duration": "60",
-				"hottness": "0.690712"				
+				"start_time": 60*3+30,//"3:30 ",
+				"end_time": 60*4+30,//"4:30",
+				"duration": 60,
+				"hottness": 0.690712				
 			},
 			{
 				"name": "The National",
-				"start_time": "5:00",
-				"end_time": "6:10",
-				"duration": "60",
-				"hottness": "0.784918"				
+				"start_time": 60*5,//"5:00",
+				"end_time": 60*6+10,//"6:10",
+				"duration": 60,
+				"hottness": 0.784918				
 			},
 			{
 				"name": "Paul McCartney",
-				"start_time": "7:10",
-				"end_time": "9:55",
-				"duration": "105",
-				"hottness": "0.600474"				
+				"start_time": 60*7+10,//"7:10",
+				"end_time": 60*9+55,//"9:55",
+				"duration": 105,
+				"hottness": 0.600474				
 			}
 		]
 	},

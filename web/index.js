@@ -13,7 +13,7 @@ var Pointer = {
 
 $(window).load(function()
 {
-	image.src = 'map.png';
+	image.src = 'map.jpg';
 
 	canvas = document.getElementById("canvas");
 	canvas.width = window.innerWidth;

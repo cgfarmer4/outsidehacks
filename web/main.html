@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Outside Lands Heatmap</title>
+
+	<meta charset="utf-8" />
+<!-- 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+ -->	<meta name="description" content="Outside Lands" />
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	<link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css" />
+	<style type="text/css">
+	body, html {
+		background-color: #fff;
+	}
+	#container {
+		height: 100%;
+		background-color: #fff;
+	}
+	#header, #footer{
+		height: 130px;
+		width: 100%;
+		background: url('../img/header_footer.jpg') repeat-x;
+	}
+	#header {
+		position: absolute;
+		top: 0;
+	}
+	#center {
+		position: relative;
+		margin-top: 130px;
+		background: url('../img/fast_track_center.jpg') no-repeat;
+		height: 690px;
+		width: 570px;
+		margin: 130px auto 0 auto;
+		background-color: #fff;
+	}
+	#footer {
+		position: absolute;
+		bottom: 0;
+	}
+	#friday a, #saturday a, #sunday a {
+		height: 90px;
+		width: 190px;
+		cursor: pointer;
+		display: block;
+	}
+	#friday a{
+		position: absolute;
+		top: 454px;
+		left: 48px;
+	}
+	#saturday a{
+		position: absolute;
+		top: 566px;
+		left: 195px;
+	}
+	#sunday a{
+		position: absolute;
+		top: 454px;
+		left: 332px;
+	}
+	</style>
+
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="header"></div>
+		<div id="center">
+			<div id="friday">
+				<a href="#">&nbsp;</a>
+			</div>
+			<div id="saturday">
+				<a href="#">&nbsp;</a>
+			</div>
+			<div id="sunday">
+				<a href="#">&nbsp;</a>
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</body>
+</html>

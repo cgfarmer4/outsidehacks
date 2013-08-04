@@ -4,23 +4,21 @@
 		"artists": [
 			{
 				"name" : "Ivan Neville's Dumpstaphunk",
-				"start_time" : "12:10",
-				"end_time": "1:00",
+				"start_time": "10",
+				"end_time": "60",
 				"duration": "50",
 				"hottness": "0.333307"				
 			},
 			{
 				"name" : "Fishbone",
-				"start_time" : "1:30",
-				"end_time": "2:20",
-				"duration": "40",
+				"start_time" : "90",
+				"end_time": "140",
 				"hottness": "0.454942"				
 			},
 			{
 				"name" : "Foals",
-				"start_time" : "2:50",
-				"end_time": "3:50",
-				"duration": "60",
+				"start_time" : "170",
+				"end_time": "230",
 				"hottness": "0.682176"				
 			},
 			{

@@ -5,7 +5,7 @@ var heatmap = null;
 
 var Pointer = {
 	mapS : 1, mapX : 0, mapY : 0,
-	prvX : 0, prvY : 0,
+	prvS : 1, prvX : 0, prvY : 0,
 	ptrX : 0, ptrY : 0,
 	begX : 0, begY : 0
 };
@@ -20,7 +20,45 @@ $(window).load(function()
 
 	var drag = false;
 
-	$('#heatmap').on('touchstart mousedown', function(e) {
+	heatmap = document.getElementById("heatmap");
+	heatmap.ontouchstart = function(e) {
+		drag = true;
+		Pointer.begX = e.targetTouches[0].pageX;
+		Pointer.begY = e.targetTouches[0].pageY;
+
+		Pointer.prvS = 
+		Pointer.ptrX = Pointer.begX * 1/Pointer.mapS - Pointer.mapX;
+		Pointer.ptrY = Pointer.begY * 1/Pointer.mapS - Pointer.mapY;
+	};
+	heatmap.ontouchmove = function(e) {
+		e.preventDefault();
+
+		var touches = e.targetTouches;
+		if(touches.length == 2) {
+			var x = Math.pow(touches[0].pageX - touches[1].pageX, 2);
+			var y = Math.pow(touches[0].pageY - touches[1].pageY, 2);
+			Pointer.mapS = Math.sqrt(x + y) / Pointer.prvS;
+		} else {
+			Pointer.mapX = (touches[0].pageX - Pointer.begX) * 1/Pointer.mapS + Pointer.prvX;
+			Pointer.mapY = (touches[0].pageY - Pointer.begY) * 1/Pointer.mapS + Pointer.prvY;
+		}
+		
+		var g = canvas.getContext('2d');
+		g.clearRect(0, 0, canvas.width, canvas.height);
+		g.save();
+		g.scale(Pointer.mapS, Pointer.mapS);
+		g.translate(Pointer.mapX, Pointer.mapY)
+		g.drawImage(image, 0,0);
+		g.restore();
+	};
+	heatmap.ontouchend = function(e) {	
+		drag = false;
+		Pointer.prvS = Pointer.mapS;
+		Pointer.prvX = Pointer.mapX;
+		Pointer.prvY = Pointer.mapY;
+	};
+/*
+	$('#heatmap').on('mousedown', function(e) {
 		drag = true;
 		Pointer.begX = e.clientX;
 		Pointer.begY = e.clientY;
@@ -28,18 +66,13 @@ $(window).load(function()
 		Pointer.ptrX = Pointer.begX * 1/Pointer.mapS - Pointer.mapX;
 		Pointer.ptrY = Pointer.begY * 1/Pointer.mapS - Pointer.mapY;
 	});
-	$('#heatmap').on('touchend mouseup', function(e) {
+	$('#heatmap').on('mouseup', function(e) {
 		drag = false;
 		Pointer.prvX = Pointer.mapX;
 		Pointer.prvY = Pointer.mapY;
 	});
-	$('#heatmap').on('touchmove mousemove', function(e) {
-		var touches = e.targetTouches;
-		if(touches.length == 2) {
-			var x = Math.pow(touches[0].clientX - touches[1].clientX, 2);
-			var y = Math.pow(touches[0].clientY - touches[1].clientY, 2);
-			console.log(Math.sqrt(x + y));
-		}
+	$('#heatmap').on('mousemove', function(e) {
+		
 		Pointer.mapX = (e.clientX - Pointer.begX) * 1/Pointer.mapS + Pointer.prvX;
 		Pointer.mapY = (e.clientY - Pointer.begY) * 1/Pointer.mapS + Pointer.prvY;
 		if(drag) {
@@ -52,7 +85,7 @@ $(window).load(function()
 			g.restore();
 		}
 	});
-	
+*/	
 
 
 	heatmap = heatmapFactory.create({"element": "heatmap"});

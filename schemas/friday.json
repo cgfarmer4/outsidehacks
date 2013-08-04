@@ -3,28 +3,38 @@
 		"stage": "Lands End",
 		"artists": [
 			{
-				"name" : "Smith Westerns",
-				"time" : "12:50 - 1:40",
+				"name": "Smith Westerns",
+				"start_time": "12:50",
+				"end_time": "1:40",
+				"duration": "50",
 				"hottness": "0.614625"				
 			},
 			{
-				"name" : "Surfer Blood",
-				"time" : "2:10 - 3:00",
+				"name": "Surfer Blood",
+				"start_time": "2:10",
+				"end_time": "3:00",
+				"duration": "50",
 				"hottness": "0.683868"				
 			},
 			{
-				"name" : "Band of Horses",
-				"time" : "3:30 - 4:30",
+				"name": "Band of Horses",
+				"start_time": "3:30 ",
+				"end_time": "4:30",
+				"duration": "60",
 				"hottness": "0.690712"				
 			},
 			{
-				"name" : "The National",
-				"time" : "5:00 - 6:10",
+				"name": "The National",
+				"start_time": "5:00",
+				"end_time": "6:10",
+				"duration": "60",
 				"hottness": "0.784918"				
 			},
 			{
-				"name" : "Paul McCartney",
-				"time" : "7:10 - 9:55",
+				"name": "Paul McCartney",
+				"start_time": "7:10",
+				"end_time": "9:55",
+				"duration": "105",
 				"hottness": "0.600474"				
 			}
 		]
@@ -33,33 +43,45 @@
 		"stage": "Sutro",
 		"artists": [
 			{
-				"name" : "Foy Vance",
-				"time" : "12:00 - 12:40",
+				"name": "Foy Vance",
+				"start_time": "12:00 ",
+				"end_time": "12:40",
+				"duration": "40",
 				"hottness": "0.448014"			
 			},
 			{
-				"name" : "Anuhea",
-				"time" : "1:05 - 1:45",
+				"name": "Anuhea",
+				"start_time": "1:05",
+				"end_time": "1:45",
+				"duration": "40",
 				"hottness": "0.563676"				
 			},
 			{
-				"name" : "The Heavy",
-				"time" : "2:10 - 2:55",
+				"name": "The Heavy",
+				"start_time": "2:10",
+				"end_time": "2:55",
+				"duration": "45",
 				"hottness": "0.60644"				
 			},
 			{
-				"name" : "Jessie Ware",
-				"time" : "3:25 - 4:15",
+				"name": "Jessie Ware",
+				"start_time": "3:25",
+				"end_time": "4:15",
+				"duration": "50",
 				"hottness": "0.597138"				
 			},
 			{
-				"name" : "Rhye",
-				"time" : "4:45 - 5:35",
+				"name": "Rhye",
+				"start_time": "4:45",
+				"end_time": "5:35",
+				"duration": "50",
 				"hottness": "0.652765"				
 			},
 			{
-				"name" : "D'Angelo",
-				"time" : "6:05 - 7:05",
+				"name": "D'Angelo",
+				"start_time": "6:05",
+				"end_time": "7:05",
+				"duration": "60",
 				"hottness": "0.561395"				
 			}
 		]
@@ -69,32 +91,44 @@
 		"artists": [
 			{
 				"name" : "Midi Matilda",
-				"time" : "12:45 - 1:30",
+				"start_time" : "12:45",
+				"end_time": "1:30",
+				"duration": "45",
 				"hottness": "0.462886"				
 			},
 			{
 				"name" : "Wild Belle",
-				"time" : "2:15 - 3:05",
+				"start_time" : "2:15",
+				"end_time": "3:05",
+				"duration": "50",
 				"hottness": "0.483125"				
 			},
 			{
 				"name" : "Twenty One Pilots",
-				"time" : "3:50 - 4:40",
+				"start_time" : "3:50",
+				"end_time": "4:40",
+				"duration": "50",
 				"hottness": "0.612778"				
 			},
 			{
-				"name" : "Zedd",
-				"time" : "5:25 - 6:15",
+				"name": "Zedd",
+				"start_time": "5:25",
+				"end_time": "6:15",
+				"duration": "50",
 				"hottness": "0.7585"				
 			},
 			{
-				"name" : "Yeasayer",
-				"time" : "7:00 - 7:50",
+				"name": "Yeasayer",
+				"start_time": "7:00",
+				"end_time": "7:50",
+				"duration": "50",
 				"hottness": "0.545343"				
 			},
 			{
-				"name" : "Pretty Lights",
-				"time" : "8:40 - 9:50",
+				"name": "Pretty Lights",
+				"start_time": "8:40",
+				"end_time": "9:50",
+				"duration": "70",
 				"hottness": "0.714475"				
 			}
 		]
@@ -103,33 +137,45 @@
 		"stage": "Panhandle",
 		"artists": [
 			{
-				"name" : "Naia Kete",
-				"time" : "12:00 - 12:40",
+				"name": "Naia Kete",
+				"start_time": "12:00",
+				"end_time": "12:40",
+				"duration": "40",
 				"hottness": "0.370843"				
 			},
 			{
-				"name" : "Houndmouth",
-				"time" : "1:30 - 2:10",
+				"name": "Houndmouth",
+				"start_time": "1:30",
+				"end_time": "2:10",
+				"duration": "40",
 				"hottness": "0.465252"				
 			},
 			{
-				"name" : "The Men",
-				"time" : "3:05 - 3:45",
+				"name": "The Men",
+				"start_time": "3:05",
+				"end_time": "3:45",
+				"duration": "40",
 				"hottness": "0.563534"				
 			},
 			{
-				"name" : "Daughter",
-				"time" : "4:40 - 5:20",
+				"name": "Daughter",
+				"start_time": "4:40",
+				"end_time": "5:20",
+				"duration": "30",
 				"hottness": "0.721112"				
 			},
 			{
-				"name" : "Wavves",
-				"time" : "6:15 - 6:55",
+				"name": "Wavves",
+				"start_time": "6:15",
+				"end_time": "6:55",
+				"duration": "40",
 				"hottness": "0.514401"				
 			},
 			{
-				"name" : "Chromatics",
-				"time" : "7:50 - 8:35",
+				"name": "Chromatics",
+				"start_time": "7:50",
+				"end_time": "8:35",
+				"duration": "45",
 				"hottness": "0.561637"				
 			}
 		]
@@ -138,33 +184,45 @@
 		"stage": "The Dome by Heineken",
 		"artists": [
 			{
-				"name" : "Lexel",
-				"time" : "12:00 - 1:00",
-				"hottness": "unknown"				
+				"name": "Lexel",
+				"start_time": "12:00",
+				"end_time": "1:00",
+				"duration": "60",
+				"hottness": "0.26289"				
 			},
 			{
 				"name" : "All Good Funk Alliance",
-				"time" : "1:00 - 2:00",
+				"start_time": "1:00",
+				"end_time": "2:00",
+				"duration": "60",
 				"hottness": "0.457322"				
 			},
 			{
 				"name" : "Motion Potion",
-				"time" : "2:00 - 3:00",
+				"start_time": "2:00",
+				"end_time": "3:00",
+				"duration": "60",
 				"hottness": "0.402699"
 			},
 			{
 				"name" : "Motion Potion vs. All Good Funk Alliance",
-				"time" : "3:00 - 4:00",
+				"start_time" : "3:00",
+				"end_time": "4:00",
+				"duration": "60",
 				"hottness": "0.402699"				
 			},
 			{
 				"name" : "The Plump DJs",
-				"time" : "4:00 - 5:30",
+				"start_time" : "4:00",
+				"end_time": "5:30",
+				"duration": "90",
 				"hottness": "0.537217"			
 			},
 			{
 				"name" : "Stanton Warriors",
-				"time" : "5:30 - 7:00",
+				"start_time" : "5:30",
+				"end_time": "7:00",
+				"duration": "90",
 				"hottness": "0.504278"				
 			}
 		]
@@ -173,29 +231,39 @@
 		"stage": "The Barbary",
 		"artists": [
 			{
-				"name" : "Maria Bamford and Eugene Mirman  hosted by Kate Berlant",
-				"time" : "12:30 - 1:40",
-				"hottness": "unknown"				
+				"name": "Maria Bamford and Eugene Mirman  hosted by Kate Berlant",
+				"start_time": "12:30",
+				"end_time": "1:40",
+				"duration": "70",
+				"hottness": ".35"				
 			},
 			{
-				"name" : "Jeffrey Ross Roasts San Francisco hosted by Moshe Kasher",
-				"time" : "2:00 - 3:15",
-				"hottness": "unknown"				
+				"name": "Jeffrey Ross Roasts San Francisco hosted by Moshe Kasher",
+				"start_time": "2:00",
+				"end_time": "3:15",
+				"duration": "75",
+				"hottness": ".35"				
 			},
 			{
-				"name" : "Maria Bamford and Eugene Mirman  hosted by Kate Berlant",
-				"time" : "3:45 - 4:55",
-				"hottness": "unknown"				
+				"name": "Maria Bamford and Eugene Mirman  hosted by Kate Berlant",
+				"start_time": "3:45",
+				"end_time": "4:55",
+				"duration": "70",
+				"hottness": ".35"				
 			},
 			{
-				"name" : "Jeffrey Ross Roasts San Francisco hosted by Moshe Kasher",
-				"time" : "5:15 - 6:30",
-				"hottness": "unknown"				
+				"name": "Jeffrey Ross Roasts San Francisco hosted by Moshe Kasher",
+				"start_time": "5:15",
+				"end_time": "6:30",
+				"duration": "75",
+				"hottness": ".35"				
 			},
 			{
-				"name" : "Night Train with Wyatt Cenac with guests Kate Berlant, Boots Riley, Ari Shaffir, and Nick Thune",
-				"time" : "6:45 - 8:00",
-				"hottness": "unknown"				
+				"name": "Night Train with Wyatt Cenac with guests Kate Berlant, Boots Riley, Ari Shaffir, and Nick Thune",
+				"start_time": "6:45",
+				"end_time": "8:00",
+				"duration": "75",
+				"hottness": ".35"				
 			}
 		]
 	}

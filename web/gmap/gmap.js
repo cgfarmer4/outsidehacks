@@ -27,11 +27,9 @@ CoordMapType.prototype.getTile = function(coord, zoom, owner) {
 
 $(window).load(function()
 {
-	mapCenter = new google.maps.LatLng(37.6,-121); //new google.maps.LatLng(38.649043,-121.162897);
-	mapZoom = 15;
 	var mapOptions = {
-		zoom: mapZoom,
-		center: mapCenter,
+		zoom: 18,
+		center: new google.maps.LatLng(38.649043, -121.162897),
 		mapTypeId : google.maps.MapTypeId.SATELLITE
 	};
 	mapView = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -48,12 +46,29 @@ $(window).load(function()
 	mapView.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
 
 	mapView.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+
+	heatmap = new HeatmapOverlay(mapView, {
+        "radius": 10,
+        "opacity": 50,
+        "visible": true
+    });
+
+    $.getJSON("http://54.221.56.166/get_status.php"+"?callback=?", function(data) {
+	  alert(data);
+	});
+
+	retrieveLocation();
 });
 
-function getLocation()
+function positionCallback(position)
 {
-	if (navigator.geolocation)
-		navigator.geolocation.getCurrentPosition(showPosition);
-	else {
-	}
+	mapView.setCenter(new google.maps.LatLng(position.coords.latitude,
+											 position.coords.longitude));
+	heatmap.addDataPoint(position.coords.latitude, position.coords.longitude, 1);
+}
+function retrieveLocation()
+{
+	if(navigator.geolocation)
+		navigator.geolocation.getCurrentPosition(positionCallback);
+	else console.log("Geolocation Unavailable");
 }

@@ -13,6 +13,9 @@ var Pointer = {
 $(window).load(function()
 {
 	image.src = 'map.jpg';
+	image.onload = function(e) {
+		resize();
+	};
 
 	canvas = document.getElementById("canvas");
 
@@ -51,6 +54,25 @@ $(window).load(function()
 		Pointer.prvY = Pointer.mapY;
 	};
 
+	var drag = false;
+	heatmap.onmousedown = function(e) {
+		drag = true;
+		Pointer.begX = e.clientX;
+		Pointer.begY = e.clientY;
+	};
+	heatmap.onmouseup = function(e) {
+		drag = false;
+		Pointer.prvX = Pointer.mapX;
+		Pointer.prvY = Pointer.mapY;
+	};
+	heatmap.onmousemove = function(e) {
+		if(drag) {
+			Pointer.mapX = (e.clientX - Pointer.begX) * 1/Pointer.mapS + Pointer.prvX;
+			Pointer.mapY = (e.clientY - Pointer.begY) * 1/Pointer.mapS + Pointer.prvY;
+			draw();
+		}
+	};
+
 	$('#slider').hide();
 	$('#slider').change(function() {
 		var val = $(this).val() == 0 ? 12 : $(this).val();
@@ -58,15 +80,6 @@ $(window).load(function()
 		draw();
 	});
 	$(window).resize(resize);
-
-	resize();
-/*
-	heatmap = heatmapFactory.create({"element": "heatmap"});
-	var centerX = canvas.width / 2;
-	var centerY = canvas.height / 2;
-	var radius = 70;
-	heatmap.store.setDataSet({ max: 10, data: [{x: centerX, y: centerY, count: radius}]});
-*/
 });
 
 function resize()

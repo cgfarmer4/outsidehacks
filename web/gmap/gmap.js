@@ -29,7 +29,7 @@ $(window).load(function()
 {
 	var mapOptions = {
 		zoom: 18,
-		center: new google.maps.LatLng(38.649043, -121.162897),
+		center: new google.maps.LatLng(37.7754, -122.4),
 		mapTypeId : google.maps.MapTypeId.SATELLITE
 	};
 	mapView = new google.maps.Map(document.getElementById("map"), mapOptions);
